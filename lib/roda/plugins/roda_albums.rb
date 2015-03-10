@@ -4,9 +4,9 @@ class Roda
     #   plugin :roda_albums
     module RodaAlbums
       
-      # def self.load_dependencies(app, opts={})
-      #   app.plugin :render
-      # end
+      def self.load_dependencies(app, opts={})
+        app.plugin :render
+      end
       
       # def self.configure(app, opts={}, &block)
       #   # <snip>
@@ -29,7 +29,8 @@ class Roda
           # NOTE! strip leading slash from path
           on(o[:path_root].gsub(/^\//,'')) do
             get  do
-              "GET #{o[:path_root]} when path is: [#{path}]"
+              "GET #{o[:path_root]} when path is: [#{path}] self = [#{self.class}]"
+              # roda_class.render('index')
             end
             
             post  do

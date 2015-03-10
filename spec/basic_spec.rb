@@ -18,17 +18,17 @@ require 'fixtures/app'
 # require 'rspec-html-matchers'
 # require 'rspec/collection_matchers'
 
-RSpec.configure do |config|
-  config.include Rack::Test::Methods
-  # config.include Capybara::DSL
-  # config.include Capybara::RSpecMatchers
-  # config.include RspecSequel::Matchers
-  # # config.include RSpec::HtmlMatchers
-  config.mock_with :rspec
-  config.expect_with :rspec
-  config.raise_errors_for_deprecations!
-  # ... other config ...  
-end
+# RSpec.configure do |config|
+#   config.include Rack::Test::Methods
+#   # config.include Capybara::DSL
+#   # config.include Capybara::RSpecMatchers
+#   # config.include RspecSequel::Matchers
+#   # config.include RSpecHtmlMatchers
+#   config.mock_with :rspec
+#   config.expect_with :rspec
+#   config.raise_errors_for_deprecations!
+#   # ... other config ...
+# end
 
 
 describe TestApp do
@@ -37,6 +37,20 @@ describe TestApp do
   def app
     TestApp
   end
+  
+  context 'GET /' do
+    before{ get '/' }
+    
+    it 'should return status = 200' do
+      expect(last_response.status).to eq(200)
+    end
+    
+    it 'should return the correct body' do
+      expect(last_response.body).to have_tag('h1', :text => 'GET /')
+    end
+    
+  end
+  
   
   context 'plugin :roda_albums' do
     

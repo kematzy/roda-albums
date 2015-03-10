@@ -15,7 +15,7 @@ require ::File.expand_path('../fixtures/app',  __FILE__)
 # Capybara.app = MyApp.app
 
 # require 'rspec_sequel_matchers'
-# require 'rspec-html-matchers'
+require 'rspec-html-matchers'
 # require 'rspec/collection_matchers'
 
 RSpec.configure do |config|
@@ -23,7 +23,7 @@ RSpec.configure do |config|
   # config.include Capybara::DSL
   # config.include Capybara::RSpecMatchers
   # config.include RspecSequel::Matchers
-  # config.include RSpec::HtmlMatchers
+  config.include RSpecHtmlMatchers
   config.mock_with :rspec
   config.expect_with :rspec
   config.raise_errors_for_deprecations!

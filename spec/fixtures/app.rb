@@ -25,6 +25,7 @@ class TestApp < Roda
   end
   plugin :error_handler  
   plugin :all_verbs
+  plugin :render, :views => 'spec/fixtures/views'
   
   # plugin :view_subdirs
   # plugin :h
@@ -47,6 +48,10 @@ class TestApp < Roda
   # compile_assets
   
   route do |r|
+    
+    r.root do
+      render('root')
+    end
     
     # test defaults  => GET /albums
     r.roda_albums
